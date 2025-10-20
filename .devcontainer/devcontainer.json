@@ -1,0 +1,59 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/typescript-node
+{
+  "name": "Node.js & TypeScript",
+
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+
+  // Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+  "remoteUser": "node",
+
+  "mounts": [
+    "source=${localEnv:HOME}/.ssh,target=/home/node/.ssh,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/.aws,target=/home/node/.aws,type=bind,consistency=cached"
+  ],
+
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": "true",
+      "username": "node",
+      "upgradePackages": "true"
+    },
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "none"
+    },
+    "ghcr.io/devcontainers/features/git:1": {
+      "version": "latest",
+      "ppa": "false"
+    },
+    "ghcr.io/devcontainers/features/aws-cli:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/anthropics/devcontainer-features/claude-code:1": {},
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "eamodio.gitlens",
+        "github.vscode-github-actions",
+        "ms-azuretools.vscode-docker",
+        "bradlc.vscode-tailwindcss",
+        "redhat.vscode-yaml",
+        "bierner.markdown-mermaid",
+        "openai.chatgpt"
+      ]
+    }
+  }
+
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // "forwardPorts": [],
+
+  // Use 'postCreateCommand' to run commands after the container is created.
+  // "postCreateCommand": [
+  //   "”
+  // ]
+}
