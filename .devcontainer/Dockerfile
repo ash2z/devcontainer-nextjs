@@ -18,12 +18,21 @@ RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 ENV PATH="/home/node/.local/bin:${PATH}"
 
 RUN <<EOF
+mkdir -p ~/.npm-global
+npm config set prefix ~/.npm-global
+echo 'export PATH=~/.npm-global/bin:$PATH' >> ~/.bashrc
+mkdir -p ~/.local/share/pnpm
+echo 'export PNPM_HOME=~/.local/share/pnpm' >> ~/.bashrc
+echo 'export PATH=$PNPM_HOME:$PATH' >> ~/.bashrc
+source ~/.bashrc
 npm install -g pnpm@latest
-pnpm install -g n
-n lts
-pnpm install -g typescript ts-node ts-node-dev tslint-to-eslint-config
-pnpm install -g @anthropic-ai/claude-code
-pnpm install -g @openai/codex
+pnpm config set global-bin-dir "$PNPM_HOME"
 uv tool install specify-cli --from git+https://github.com/github/spec-kit.git
+npm install -g n
+n lts
+npm install -g typescript ts-node ts-node-dev tslint-to-eslint-config
+npm install -g @anthropic-ai/claude-code
+npm install -g @openai/codex
 echo 'eval "$(starship init bash)"' >> ~/.bashrc
 EOF
+
