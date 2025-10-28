@@ -33,6 +33,7 @@ n lts
 npm install -g typescript ts-node ts-node-dev tslint-to-eslint-config
 npm install -g @anthropic-ai/claude-code
 npm install -g @openai/codex
+npm install -g @github/copilot
 echo 'eval "$(starship init bash)"' >> ~/.bashrc
 EOF
 
